@@ -1,0 +1,49 @@
+
+<html>
+    <head>
+      <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    </head>
+    <body>
+      <script type="module">
+  
+        import init, { add } from './pkg/hello_wasm.js';
+  
+        async function run() {
+  
+          await init();
+  
+          const result = add(1, 2);
+          console.log(`1 + 2 = ${result}`);
+          if (result !== 3)
+            throw new Error("wasm addition doesn't work!");
+        }
+  
+        run();
+      </script>
+    </body>
+  </html>
+
+
+<!--
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+  </head>
+  <body>
+    <script src='pkg/hello_wasm.js'></script>
+
+    <script>
+      const { add } = wasm_bindgen;
+
+      async function run() {
+        await wasm_bindgen('./pkg/hello_wasm_bg.wasm');
+
+        const result = add(1, 2);
+        console.log(`1 + 2 = ${result}`);
+      }
+
+      run();
+    </script>
+  </body>
+</html>
+-->
